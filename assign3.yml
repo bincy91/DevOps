@@ -1,0 +1,10 @@
+---
+- hosts: server
+  tasks:
+  
+  - name: Registering 
+    command: id -un
+    register: bincy
+
+  - debug:
+      msg: "Logged in as user {{ bincy.stdout }}"

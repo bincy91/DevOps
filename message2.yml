@@ -1,0 +1,14 @@
+---
+- hosts: dev
+  sudo: yes
+  vars:
+    app_name: myapp
+    db_ip: 11.22.33.44
+    app_Ver: 1.0.0
+    db_name: mydb
+    db_pass: mypass
+  tasks:
+    - name: copy properties file
+      template:
+        src: application.j2
+        dest: /home/centos/application.properties

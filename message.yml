@@ -1,0 +1,40 @@
+---
+- hosts: dev
+  sudo: yes
+  vars:
+    Enter_your_name: bincy
+  tasks:
+    - name: Delete dir
+      file: 
+         path: /var/www
+         state: absent
+
+    - name: Create dir
+      file:
+         path: /var/www/html
+         state: directory
+
+    - name: Message template
+      template:
+        src: sample_test.j2
+        dest: /var/www/html/index.html
+
+    - name:
+      yum:
+        name: "{{ item }}"
+        state: installed
+      with_items:
+        - httpd
+        - telnet
+        - git
+        - vi
+      notify:
+        - start httpd service      
+  handlers:
+    - name: start httpd service
+      service:
+        name: httpd        
+    - name:
+      service:
+        name: httpd
+        state: started

@@ -1,0 +1,7 @@
+---
+- hosts: dev
+  sudo: yes
+  vars_files:
+    - var.yml
+  roles:
+   - apache

@@ -1,0 +1,14 @@
+---
+- hosts: server
+  sudo: yes
+  tasks: 
+    - name: create user
+      user:
+        name: etlhive
+        shell: /sbin/nologin
+
+
+    - name: Install package
+      yum:
+        name: zlib
+        state: installed         

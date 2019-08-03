@@ -1,0 +1,32 @@
+---
+- hosts: dev
+  sudo: yes
+  vars:
+    My_Name: World
+  tasks:
+    - name: Delete dir
+      file:
+         path: /var/www
+         state: absent
+
+    - name: Create Directory
+      file:
+         path: /var/www/html
+         state: directory
+
+    - name: Message template
+      template:
+        src: index.html.j2
+        dest: /var/www/html/index.html
+      notify:
+      - restart httpd
+  handlers:
+    - name: start https dervice
+      service:
+        name: httpd
+        state: started
+
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted

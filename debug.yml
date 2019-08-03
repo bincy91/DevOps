@@ -1,0 +1,18 @@
+---
+- hosts: all
+  vars: 
+    Your_name: Bincy Babu
+  tasks: 
+    - name: Get command output
+      command: bincy
+      register: login_user
+      ignore_errors: True
+
+    - name: Debug output
+      debug:
+       #msg="Logged in as user {{ login_user.stdout }}"
+        var: ansible_distribution
+
+    - name: Debug 
+      debug:
+        msg: "Hi, Greeting from {{ Your_name }}"

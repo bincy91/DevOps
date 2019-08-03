@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+    - name: install package only id os is Centos or Ubuntu
+      yum: 
+        name={{ item }} 
+        state=latest
+      with_items:
+        - httpd
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu'
